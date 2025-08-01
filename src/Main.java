@@ -10,6 +10,7 @@ public class Main {
 
         // Назва файлу, з яким будемо працювати
         String fileName = "numbers.txt";
+        int a = 5;
         // Створюємо файл і записуємо в нього два числа для прикладу
         try {
             FileWriter writer = new FileWriter(fileName);
