@@ -5,10 +5,10 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         // Ввід числе
-        System.out.print("Enter the first number: ");
+        System.out.print("Перше число: ");
         double a = scanner.nextDouble();
 
-        System.out.print("Enter the second number: ");
+        System.out.print("Друге число: ");
         double b = scanner.nextDouble();
 
         MathFunction adder = new Add();
