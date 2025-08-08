@@ -1,53 +1,29 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-        // Назва файлу, з яким будемо працювати
-        String fileName = "numbers.txt";
-        int a = 5;
-        // Створюємо файл і записуємо в нього два числа для прикладу
-        try {
-            FileWriter writer = new FileWriter(fileName);
-            writer.write("10\n20");
-            writer.close();
-            System.out.println("Файл 'numbers.txt' успішно створено з числами 10 і 20.");
-        } catch (IOException e) {
-            System.err.println("Помилка при створенні файлу: " + e.getMessage());
-            return;
-        }
+        // Отримання двох чисел від користувача
+        System.out.print("Enter the first number: ");
+        double num1 = scanner.nextDouble();
 
-        // 1. Зчитуємо дані з файлу
-        try {
-            File file = new File(fileName);
-            Scanner scanner = new Scanner(file);
-            int number1 = scanner.nextInt();
-            int number2 = scanner.nextInt();
-            scanner.close();
+        System.out.print("Enter the second number: ");
+        double num2 = scanner.nextDouble();
 
-            System.out.println("Зчитано числа: " + number1 + " та " + number2);
+        // Створення об'єктів для математичних операцій
+        MathFunction adder = new Addition();
+        MathFunction subtractor = new Subtraction();
+        MathFunction multiplier = new Multiplication();
+        MathFunction divider = new Division();
 
-            // 2. Додаємо числа
-            int sum = number1 + number2;
-            System.out.println("Сума чисел: " + sum);
+        // Виконання операцій та виведення результатів
+        System.out.println("--------------------");
+        System.out.println("Addition: " + adder.calculate(num1, num2));
+        System.out.println("Subtraction: " + subtractor.calculate(num1, num2));
+        System.out.println("Multiplication: " + multiplier.calculate(num1, num2));
+        System.out.println("Division: " + divider.calculate(num1, num2));
 
-            // 3. Записуємо результат назад у файл
-            try {
-                FileWriter writer = new FileWriter(fileName);
-                writer.write(String.valueOf(sum));
-                writer.close();
-                System.out.println("Результат (" + sum + ") успішно записано у файл.");
-            } catch (IOException e) {
-                System.err.println("Помилка при записі у файл: " + e.getMessage());
-            }
-
-        } catch (FileNotFoundException e) {
-            System.err.println("Файл не знайдено: " + e.getMessage());
-        }
+        scanner.close();
     }
 }
